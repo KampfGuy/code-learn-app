@@ -1,30 +1,33 @@
 # CodeLearn - Interactive Coding Learning App
 
-A simple, beautiful web app to learn the basics of HTML, CSS, and JavaScript through interactive lessons.
+A simple, beautiful web app to learn the basics of HTML, CSS, and JavaScript through interactive lessons **plus a free coding playground**.
 
 ## Features
 
 - 5 progressive lessons covering HTML structure, CSS styling, JS variables, functions, and DOM manipulation
+- **Free Playground** mode — write any HTML/CSS/JS and see it live
 - Live code editor with preview (for HTML/CSS) and console output (for JavaScript)
 - Progress tracking saved in your browser
-- Mobile-friendly design
+- Fully responsive — works great on Chromebooks, tablets, and phones
 - Completely client-side — no server needed
 
 ## How to Use
 
-1. Open `index.html` in any modern web browser
-2. Select a lesson from the sidebar
-3. Edit the code in the editor
-4. Click **Run Code** to see the result
-5. Complete the challenge to mark the lesson done
-6. Use **Next Lesson** to continue
+1. Open the app (see GitHub Pages link below once enabled)
+2. Use **Lessons** mode to follow guided tutorials
+3. Switch to **Free Playground** to experiment with any code you want
+4. Edit the code and click **Run Code**
 
-## Deploying to GitHub Pages
+## Deploying to GitHub Pages (Make it Live)
 
-1. Go to your repository Settings → Pages
-2. Set Source to **Deploy from a branch**
-3. Select the `main` branch and `/ (root)` folder
-4. Save — your app will be live at `https://kampfguy.github.io/code-learn-app/`
+1. Go to the repository: https://github.com/KampfGuy/code-learn-app
+2. Click **Settings** → **Pages**
+3. Under "Build and deployment":
+   - Source: **Deploy from a branch**
+   - Branch: **main** / **/(root)**
+4. Click **Save**
+5. Wait 1–2 minutes. Your app will be live at:
+   **https://kampfguy.github.io/code-learn-app/**
 
 ## Lessons Included
 
@@ -48,4 +51,4 @@ MIT License — Feel free to use, modify, and share!
 
 ---
 
-Made with ❤️ for learning to code.
+Made with ❤️ for learning to code on any device (including Chromebooks).

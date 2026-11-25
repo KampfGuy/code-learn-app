@@ -14,18 +14,42 @@ body {
 .app {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
 }
 
 header {
     text-align: center;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 8px;
+}
+
+.header-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.mode-btn.active, .mode-btn:hover {
+    background: white;
+    color: #667eea;
 }
 
 .container {
@@ -39,10 +63,11 @@ header h1 {
 }
 
 .sidebar {
-    width: 280px;
+    width: 260px;
     background: #f8f9fa;
     padding: 20px;
     border-right: 1px solid #e0e0e0;
+    flex-shrink: 0;
 }
 
 .sidebar h2 {
@@ -62,6 +87,7 @@ header h1 {
     cursor: pointer;
     transition: all 0.3s;
     border-left: 4px solid transparent;
+    font-size: 0.95rem;
 }
 
 #lesson-list li:hover, #lesson-list li.active {
@@ -79,16 +105,14 @@ header h1 {
 }
 
 .progress-bar {
-    height: 8px;
+    height: 10px;
     background: #e0e0e0;
-    border-radius: 4px;
+    border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-.progress-bar::after {
-    content: '';
-    display: block;
+#progress-fill {
     height: 100%;
     width: 0%;
     background: #28a745;
@@ -102,7 +126,7 @@ header h1 {
 
 .content {
     flex: 1;
-    padding: 30px;
+    padding: 25px;
     overflow-y: auto;
 }
 
@@ -129,41 +153,45 @@ header h1 {
 
 textarea {
     width: 100%;
-    height: 200px;
+    height: 220px;
     padding: 15px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', Consolas, monospace;
     font-size: 14px;
     resize: vertical;
+    background: #fafafa;
 }
 
 .buttons {
-    margin-top: 10px;
+    margin-top: 12px;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 18px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
     transition: transform 0.2s;
+    font-size: 0.95rem;
 }
 
 button:hover {
     transform: translateY(-2px);
 }
 
-#run-btn { background: #28a745; color: white; }
-#reset-btn { background: #ffc107; color: #333; }
+#run-btn, #playground-run { background: #28a745; color: white; }
+#reset-btn, #playground-clear { background: #ffc107; color: #333; }
 #next-btn { background: #667eea; color: white; }
+#playground-example { background: #6c757d; color: white; }
 
 iframe {
     width: 100%;
-    height: 250px;
+    height: 280px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     background: white;
@@ -171,20 +199,74 @@ iframe {
 
 .console {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     background: #1e1e1e;
     color: #d4d4d4;
     border-radius: 6px;
     font-family: monospace;
-    min-height: 50px;
+    min-height: 60px;
     white-space: pre-wrap;
+    font-size: 13px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
+/* Playground specific */
+.playground-container {
+    display: block;
+    padding: 20px;
+}
+
+.playground-full h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.playground-editor textarea {
+    height: 300px;
+}
+
+.playground-preview {
+    margin-top: 20px;
+}
+
+/* Chromebook / Tablet / Mobile responsive */
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
     }
     .sidebar {
         width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .app {
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    textarea {
+        height: 180px;
+        font-size: 13px;
+    }
+    iframe {
+        height: 220px;
+    }
+    .playground-editor textarea {
+        height: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    .buttons {
+        flex-direction: column;
+    }
+    button {
+        width: 100%;
+    }
+    .mode-btn {
+        flex: 1;
+        min-width: 120px;
     }
 }

@@ -81,6 +81,7 @@ document.getElementById("btn").onclick = function() {
 
 let currentLesson = null;
 let completed = JSON.parse(localStorage.getItem("codelearn-completed") || "[]");
+let isPlayground = false;
 
 function init() {
     const list = document.getElementById("lesson-list");
@@ -93,9 +94,36 @@ function init() {
         list.appendChild(li);
     });
     updateProgress();
+
+    // Mode switching
+    document.getElementById("lessons-mode-btn").onclick = () => switchMode(false);
+    document.getElementById("playground-mode-btn").onclick = () => switchMode(true);
+
+    // Lesson buttons
+    document.getElementById("run-btn").onclick = runCode;
+    document.getElementById("reset-btn").onclick = resetCode;
+    document.getElementById("next-btn").onclick = nextLesson;
+
+    // Playground buttons
+    document.getElementById("playground-run").onclick = runPlayground;
+    document.getElementById("playground-clear").onclick = () => {
+        document.getElementById("playground-editor").value = "";
+        document.getElementById("playground-preview").srcdoc = "";
+        document.getElementById("playground-console").textContent = "";
+    };
+    document.getElementById("playground-example").onclick = loadPlaygroundExample;
+}
+
+function switchMode(toPlayground) {
+    isPlayground = toPlayground;
+    document.getElementById("lessons-container").style.display = toPlayground ? "none" : "flex";
+    document.getElementById("playground-container").style.display = toPlayground ? "block" : "none";
+    document.getElementById("lessons-mode-btn").classList.toggle("active", !toPlayground);
+    document.getElementById("playground-mode-btn").classList.toggle("active", toPlayground);
 }
 
 function loadLesson(id) {
+    if (isPlayground) switchMode(false);
     currentLesson = lessons.find(l => l.id === id);
     document.querySelectorAll("#lesson-list li").forEach(li => li.classList.remove("active"));
     document.querySelector(`[data-id="${id}"]`).classList.add("active");
@@ -132,7 +160,6 @@ function runCode() {
         console.log = originalLog;
     }
     
-    // Check if completed
     if (currentLesson.check && currentLesson.check(code)) {
         if (!completed.includes(currentLesson.id)) {
             completed.push(currentLesson.id);
@@ -159,19 +186,69 @@ function nextLesson() {
 
 function updateProgress() {
     const percent = Math.round((completed.length / lessons.length) * 100);
-    document.getElementById("progress-bar").style.setProperty("--progress", percent + "%");
-    // Actually set the width via style
-    const bar = document.querySelector(".progress-bar");
-    bar.style.width = "100%"; // container
-    // Better: inject style
+    document.getElementById("progress-fill").style.width = percent + "%";
     document.getElementById("progress-text").textContent = percent + "% complete";
-    // Simple visual: change background via inline or class
-    const after = document.querySelector(".progress-bar");
-    after.innerHTML = `<div style="width:${percent}%;height:100%;background:#28a745;"></div>`;
 }
 
-document.getElementById("run-btn").onclick = runCode;
-document.getElementById("reset-btn").onclick = resetCode;
-document.getElementById("next-btn").onclick = nextLesson;
+function runPlayground() {
+    const code = document.getElementById("playground-editor").value;
+    const preview = document.getElementById("playground-preview");
+    const consoleOut = document.getElementById("playground-console");
+    consoleOut.textContent = "";
+
+    // Capture console.log
+    const originalLog = console.log;
+    console.log = (...args) => {
+        consoleOut.textContent += args.join(" ") + "\n";
+        originalLog.apply(console, args);
+    };
+
+    preview.srcdoc = code;
+    consoleOut.textContent += "Preview updated.\n";
+
+    // Reset console after a moment so user can see logs from the iframe if any
+    setTimeout(() => { console.log = originalLog; }, 100);
+}
+
+function loadPlaygroundExample() {
+    document.getElementById("playground-editor").value = `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 { font-size: 2.5rem; }
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background: white;
+      color: #667eea;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <h1>🚀 Free Playground</h1>
+  <p>Edit the code on the left and hit Run!</p>
+  <button onclick="document.body.style.background = 'linear-gradient(135deg, #f093fb, #f5576c)'">Change Background</button>
+  <button onclick="alert('You coded this!')">Say Hello</button>
+  <script>
+    console.log("Playground example loaded!");
+  </script>
+</body>
+</html>`;
+    runPlayground();
+}
 
 init();
