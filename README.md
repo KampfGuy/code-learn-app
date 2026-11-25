@@ -2,6 +2,8 @@
 
 A simple, beautiful web app to learn the basics of HTML, CSS, and JavaScript through interactive lessons **plus a free coding playground**.
 
+**Live app:** [https://kampfguy.github.io/code-learn-app/](https://kampfguy.github.io/code-learn-app/)
+
 ## Features
 
 - 5 progressive lessons covering HTML structure, CSS styling, JS variables, functions, and DOM manipulation
@@ -13,21 +15,10 @@ A simple, beautiful web app to learn the basics of HTML, CSS, and JavaScript thr
 
 ## How to Use
 
-1. Open the app (see GitHub Pages link below once enabled)
+1. Open the live app: [https://kampfguy.github.io/code-learn-app/](https://kampfguy.github.io/code-learn-app/)
 2. Use **Lessons** mode to follow guided tutorials
 3. Switch to **Free Playground** to experiment with any code you want
 4. Edit the code and click **Run Code**
-
-## Deploying to GitHub Pages (Make it Live)
-
-1. Go to the repository: https://github.com/KampfGuy/code-learn-app
-2. Click **Settings** → **Pages**
-3. Under "Build and deployment":
-   - Source: **Deploy from a branch**
-   - Branch: **main** / **/(root)**
-4. Click **Save**
-5. Wait 1–2 minutes. Your app will be live at:
-   **https://kampfguy.github.io/code-learn-app/**
 
 ## Lessons Included
 
