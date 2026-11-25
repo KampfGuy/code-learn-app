@@ -6,17 +6,21 @@
     <meta name="theme-color" content="#667eea">
     <title>CodeLearn - Learn to Code Interactively</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
 </head>
 <body>
     <div class="app">
         <header>
             <h1>💻 CodeLearn</h1>
-            <p>Learn coding step by step with interactive lessons</p>
+            <p>Learn coding step by step — lessons, free coding, and Scratch-style blocks</p>
             <div class="header-buttons">
                 <button id="lessons-mode-btn" class="mode-btn active">Lessons</button>
                 <button id="playground-mode-btn" class="mode-btn">Free Playground</button>
+                <button id="scratch-mode-btn" class="mode-btn">Scratch Blocks</button>
             </div>
         </header>
+
+        <!-- Lessons -->
         <div class="container" id="lessons-container">
             <aside class="sidebar">
                 <h2>Lessons</h2>
@@ -30,7 +34,7 @@
                 <div id="lesson-content">
                     <h2>Welcome to CodeLearn!</h2>
                     <p>Select a lesson from the sidebar to start learning HTML, CSS, and JavaScript.</p>
-                    <p>Or switch to <strong>Free Playground</strong> to code whatever you want!</p>
+                    <p>Or try the <strong>Free Playground</strong> and <strong>Scratch Blocks</strong> modes!</p>
                 </div>
                 <div class="editor-section" id="editor-section" style="display:none;">
                     <h3>Your Code</h3>
@@ -53,35 +57,41 @@
         <div class="container playground-container" id="playground-container" style="display:none;">
             <div class="playground-full">
                 <h2>🎭 Free Coding Playground</h2>
-                <p>Write any HTML, CSS, and JavaScript. Click Run to see it live. Perfect for experimenting!</p>
+                <p>Write any HTML, CSS, and JavaScript. Share your code with a link!</p>
                 <div class="playground-editor">
-                    <textarea id="playground-editor" placeholder="<!-- Write full HTML here -->
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { font-family: Arial; text-align: center; padding: 40px; }
-    h1 { color: #667eea; }
-  </style>
-</head>
-<body>
-  <h1>Hello from the Playground!</h1>
-  <button onclick="alert('It works!')">Click Me</button>
-  <script>
-    console.log('Playground ready');
-  </script>
-</body>
-</html>"></textarea>
+                    <textarea id="playground-editor" placeholder="<!-- Write full HTML here -->"></textarea>
                     <div class="buttons">
                         <button id="playground-run">Run Code</button>
                         <button id="playground-clear">Clear</button>
                         <button id="playground-example">Load Example</button>
+                        <button id="share-code-btn">Share Code</button>
+                    </div>
+                    <div id="share-link-box" style="display:none; margin-top:10px;">
+                        <input type="text" id="share-link" readonly style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;">
+                        <button id="copy-link-btn" style="margin-top:6px;">Copy Link</button>
                     </div>
                 </div>
                 <div class="playground-preview">
                     <h3>Live Preview</h3>
                     <iframe id="playground-preview" sandbox="allow-scripts allow-modals"></iframe>
                     <div id="playground-console" class="console"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scratch / Blockly -->
+        <div class="container" id="scratch-container" style="display:none; padding:20px;">
+            <div style="width:100%;">
+                <h2>🧩 Scratch-Style Block Coding</h2>
+                <p>Drag blocks to make a simple game. Click <strong>Generate & Run</strong> to turn your blocks into code and play it!</p>
+                <div id="blockly-div" style="height:400px; width:100%; border:2px solid #e0e0e0; border-radius:8px;"></div>
+                <div class="buttons" style="margin-top:12px;">
+                    <button id="generate-blocks-btn">Generate & Run</button>
+                    <button id="clear-blocks-btn">Clear Blocks</button>
+                </div>
+                <div class="playground-preview" style="margin-top:20px;">
+                    <h3>Game Preview</h3>
+                    <iframe id="scratch-preview" sandbox="allow-scripts" style="height:300px;"></iframe>
                 </div>
             </div>
         </div>
