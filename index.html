@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Learn to Code Interactively</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>💻 CodeLearn</h1>
+            <p>Learn coding step by step with interactive lessons</p>
+        </header>
+        <div class="container">
+            <aside class="sidebar">
+                <h2>Lessons</h2>
+                <ul id="lesson-list"></ul>
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <span id="progress-text">0%</span>
+                </div>
+            </aside>
+            <main class="content">
+                <div id="lesson-content">
+                    <h2>Welcome to CodeLearn!</h2>
+                    <p>Select a lesson from the sidebar to start learning HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="editor-section" id="editor-section" style="display:none;">
+                    <h3>Your Code</h3>
+                    <textarea id="code-editor" placeholder="Write your code here..."></textarea>
+                    <div class="buttons">
+                        <button id="run-btn">Run Code</button>
+                        <button id="reset-btn">Reset</button>
+                        <button id="next-btn">Next Lesson</button>
+                    </div>
+                </div>
+                <div class="preview-section" id="preview-section" style="display:none;">
+                    <h3>Preview</h3>
+                    <iframe id="preview" sandbox="allow-scripts"></iframe>
+                    <div id="console-output" class="console"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
