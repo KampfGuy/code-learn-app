@@ -1,27 +1,9 @@
-# CodeLearn - Interactive Coding Learning App
+# CodeLearn
 
-A simple, beautiful web app to learn the basics of HTML, CSS, and JavaScript through interactive lessons, a free playground, and Scratch-style block coding.
+**Live:** [https://kampfguy.github.io/code-learn-app/](https://kampfguy.github.io/code-learn-app/)
 
-**Live app:** [https://kampfguy.github.io/code-learn-app/](https://kampfguy.github.io/code-learn-app/)
+Lessons + Free Playground + Scratch Blocks + SharedCode list (top-left).
 
-## Features
+**Note:** SharedCode uses browser storage (works on the same Chromebook/browser). True multi-user cloud sharing needs a backend.
 
-- Progressive lessons (HTML, CSS, JS, simple games, intro to 3D)
-- **Free Playground** with **Share Code** links — send your code to friends
-- **Scratch Blocks** mode — drag-and-drop block coding that generates JavaScript
-- Fully responsive — works great on Chromebooks, tablets, and phones
-- Progress tracking in the browser
-
-## How to Use
-
-1. Open the live app
-2. Switch between **Lessons**, **Free Playground**, and **Scratch Blocks**
-3. In the Playground, click **Share Code** to get a link that loads your code for anyone else
-
-## License
-
-MIT License — Feel free to use, modify, and share!
-
----
-
-Made with ❤️ for learning to code on any device.
+Hard-refresh (Ctrl+Shift+R) if you don't see the new lessons.
